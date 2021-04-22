@@ -52,13 +52,14 @@ public class Square {
 			distanceToTarget = this.calcDistace(target);
 		
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + Float.floatToIntBits(distanceToRoot);
 		result = prime * result + Float.floatToIntBits(distanceToTarget);
+		result = prime * result + (isPath ? 1231 : 1237);
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + x;
 		result = prime * result + y;
@@ -77,6 +78,8 @@ public class Square {
 		if (Float.floatToIntBits(distanceToRoot) != Float.floatToIntBits(other.distanceToRoot))
 			return false;
 		if (Float.floatToIntBits(distanceToTarget) != Float.floatToIntBits(other.distanceToTarget))
+			return false;
+		if (isPath != other.isPath)
 			return false;
 		if (type != other.type)
 			return false;
