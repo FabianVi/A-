@@ -173,10 +173,8 @@ public class Field {
 		
 		while(tmp.getSquareType() != SquareType.ROOT)
 		{
-			System.out.println(tmp);
 			tmp.isPath = true;
 			tmp = this.bestNeighbour(tmp);
-			System.out.println(tmp);
 		}
 	}
 	
@@ -195,6 +193,6 @@ public class Field {
 					field[i][j] = new Square(i,j,SquareType.ROOT);
 		
 		current = root;
-		target = field[target.x][target.x];
+		target = field[target.x][target.y];
 	}
 }
