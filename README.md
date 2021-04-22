@@ -15,8 +15,8 @@ It's possible to:
 * Setting the Start and Endpoint
 * Having a live interactive sandbox autoupdate
 
-![Menue Toolbox](https://drive.google.com/file/d/1kFxfYO0PVgBID6yH7tKY73XRzJTQTg-a/view?usp=sharing)
-![Grid View](https://drive.google.com/file/d/1F3kZiYn8IH4kmCxIq7w0RBHuycjCWtu7/view?usp=sharing)
+![Menue Toolbox](https://drive.google.com/uc?export=view&id=1kFxfYO0PVgBID6yH7tKY73XRzJTQTg-a)
+![Grid View](https://drive.google.com/uc?export=view&id=1F3kZiYn8IH4kmCxIq7w0RBHuycjCWtu7)
 
 ## What is A*
 A algorithm which finds the shortest path between two given points e.g. ROOT (start),
