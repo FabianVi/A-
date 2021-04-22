@@ -9,11 +9,9 @@ public class Field {
 	
 	public Square field[][];
 	public Square current;
-
 	
-	
-	Square target;
-	Square root;
+	public Square target;
+	public Square root;
 	
 	List<Square> checked = new ArrayList<Square>();
 	List<Square> calcDistance = new ArrayList<Square>();

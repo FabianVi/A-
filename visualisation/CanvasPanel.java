@@ -13,8 +13,12 @@ public class CanvasPanel extends JPanel {
 	
 	Field f;
 	
-	boolean rootDistance;
-	boolean targetDistance;
+	public boolean rootDistance = false;
+	public boolean targetDistance = false;
+	
+	public boolean checked = true;
+	public boolean calculated = true;
+	public boolean path = true;
 	
 	public CanvasPanel() {
 		super();
@@ -53,28 +57,38 @@ public class CanvasPanel extends JPanel {
 					break;
 					
 				case CALCULATED:
-					g.setColor(new Color(200,20,20));
+					if(calculated)
+						g.setColor(new Color(200,20,20));
+					else
+						g.setColor(Color.gray);
 					break;
 					
 				case CHECKED:
-					g.setColor(Color.red);
+					if(checked)
+						g.setColor(Color.red);
+					else
+						g.setColor(Color.gray);
 					break;
-				
+					
+				default:
+					g.setColor(Color.gray);
 				}
 				
 				String distR = String.format("%.2f", f.field[i][j].distanceToRoot);
 				String distT = String.format("%.2f", f.field[i][j].distanceToTarget);
 				
+		
 				g.fillRect((int)(sizex*i)+1, (int)(sizey*j)+1, (int)sizex-2, (int)sizey-2);
 				
 				g.setColor(Color.white);
-				if(f.field[i][j].isPath)
+				
+				if(f.field[i][j].isPath && path)
 					g.drawRect((int)(sizex*i)+1, (int)(sizey*j)+1, (int)sizex-2, (int)sizey-2);
 				
 				if(rootDistance)
-					g.drawChars(distR.toCharArray(), 0, Math.min(4, distR.length()), (int)(sizex*i)+1, (int)(sizey*j)+1 + 28 + (int)(sizex/2) - 10);
+					g.drawChars(distR.toCharArray(), 0, Math.min(4, distR.length()), (int)(sizex*i)+1, (int)(sizey*j)+1 + (int)(sizex/2) - 10);
 				if(targetDistance)
-					g.drawChars(distT.toCharArray(), 0, Math.min(4, distT.length()), (int)(sizex*i)+1, (int)(sizey*j)+1 + 28 + (int)(sizex/2) + 20);
+					g.drawChars(distT.toCharArray(), 0, Math.min(4, distT.length()), (int)(sizex*i)+1, (int)(sizey*j)+1 + (int)(sizex/2) + 20);
 			}
 		
 	

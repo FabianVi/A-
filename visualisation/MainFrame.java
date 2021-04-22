@@ -8,9 +8,9 @@ import algorithm.Field;
 public class MainFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	Field f;
+	public Field f;
 	
-	CanvasPanel canvas = new CanvasPanel();
+	public CanvasPanel canvas = new CanvasPanel();
 	
 	Toolbox toolbox = new Toolbox();
 	
@@ -29,14 +29,14 @@ public class MainFrame extends JFrame {
 
 		this.setSize(800, 800);
 		this.setVisible(true);
-		
-		toolbox.setMainFrame(this);
 	}
 	
 	public void setField(Field f) {
 		
 		this.f = f;
 		canvas.setField(f);
+		
+		toolbox.setMainFrame(this);
 		
 		this.repaint();
 	}
