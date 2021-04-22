@@ -198,23 +198,22 @@ public class Toolbox extends JFrame implements ActionListener {
 			f.setRoot(Integer.parseInt(rootx.getText()), Integer.parseInt(rooty.getText()));
 			f.setTarget(Integer.parseInt(targetx.getText()), Integer.parseInt(targety.getText()));
 			
-			if(autoEval.isSelected())
-				f.evaluate();
+			mainFrame.setField(f);
+			mainFrame.canvas.applyWall();
 			
-			mainFrame.setField(f );
-
+			if(autoEval.isSelected())
+				mainFrame.f.evaluate();
 		}
 		
 		if(e.getSource() == evaluateBtn) {
 			
-			Field f = new Field(Integer.parseInt(widthIn.getText()),Integer.parseInt(heightIn.getText()));
+			mainFrame.f.clear();
 			
-			f.setRoot(Integer.parseInt(rootx.getText()), Integer.parseInt(rooty.getText()));
-			f.setTarget(Integer.parseInt(targetx.getText()), Integer.parseInt(targety.getText()));
+			mainFrame.canvas.applyWall();
 			
-			f.evaluate();
+			mainFrame.f.evaluate();
 			
-			mainFrame.setField( f);
+			mainFrame.repaint();
 		}
 		
 		if(e.getSource() == next) {
@@ -247,6 +246,9 @@ public class Toolbox extends JFrame implements ActionListener {
 			mainFrame.repaint();
 		}
 		
+		if(e.getSource() == autoEval) {
+			mainFrame.canvas.autoEvaluate = autoEval.isSelected();
+		}
 		
 		
 	}

@@ -39,7 +39,21 @@ public class Field {
 	}
 	
 	public void setWall(int x, int y) {
-		field[x][y].setSquareType(SquareType.WALL);
+		if(checkBounce(x, y))
+			field[x][y].setSquareType(SquareType.WALL);
+	}
+	
+	public void removeWall(int x, int y) {
+		if(checkBounce(x, y))
+			field[x][y].setSquareType(SquareType.DEFAULT);
+	}
+	
+	public void setWall(Square sq) {
+		this.setWall(sq.x,sq.y);
+	}
+	
+	public void removeWall(Square sq) {
+		this.removeWall(sq.x,sq.y);
 	}
 	
 	public void evaluate() {
@@ -102,11 +116,17 @@ public class Field {
 					if(field[i][j].distanceToRoot < min.distanceToRoot && field[i][j].getSquareType()!=SquareType.WALL)
 						min = field[i][j];
 		
+		if(min == sq)
+			return root;
+		
 		return min;
 		
 	}
 	
 	public Square bestNext() {
+		
+		if(calcDistance.isEmpty())
+			return target;
 		
 		Square min = calcDistance.get(0);
 		
@@ -156,7 +176,22 @@ public class Field {
 			tmp.isPath = true;
 			tmp = this.bestNeighbour(tmp);
 		}
+	}
+	
+	public void clear() {
 		
+		checked.clear();
+		calcDistance.clear();
 		
+		for(int i=0; i<width; i++)
+			for(int j=0; j<height; j++)
+				if(field[i][j].getSquareType() != SquareType.ROOT && field[i][j].getSquareType() != SquareType.TARGET)
+					field[i][j] = new Square(i,j);
+				else if (field[i][j].getSquareType() == SquareType.TARGET)
+					field[i][j] = new Square(i,j,SquareType.TARGET);
+				else if (field[i][j].getSquareType() == SquareType.ROOT)
+					field[i][j] = new Square(i,j,SquareType.ROOT);
+		
+		current = root;
 	}
 }

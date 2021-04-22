@@ -2,16 +2,23 @@ package visualisation;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
 import algorithm.Field;
+import algorithm.Square;
+import algorithm.SquareType;
 
-public class CanvasPanel extends JPanel {
+public class CanvasPanel extends JPanel implements MouseListener {
 	
 	private static final long serialVersionUID = 1L;
 	
 	Field f;
+	List<Square> wall = new ArrayList<Square>();
 	
 	public boolean rootDistance = false;
 	public boolean targetDistance = false;
@@ -20,8 +27,15 @@ public class CanvasPanel extends JPanel {
 	public boolean calculated = true;
 	public boolean path = true;
 	
+	public boolean autoEvaluate = false;
+	
+	float sizex;
+	float sizey;
+	
 	public CanvasPanel() {
 		super();
+		
+		addMouseListener(this);
 	}
 	
 	@Override
@@ -32,9 +46,6 @@ public class CanvasPanel extends JPanel {
 		
 		if(f == null)
 			return;
-		
-		float sizex = this.getWidth() * 1.0f / (f.width);
-		float sizey = this.getHeight() * 1.0f  / (f.height);
 		
 		for(int i=0; i<f.width; i++)
 			for(int j=0; j<f.height; j++) {
@@ -97,7 +108,63 @@ public class CanvasPanel extends JPanel {
 	public void setField(Field f) {
 		
 		this.f = f;
+		
+		sizex = this.getWidth() * 1.0f / (f.width);
+		sizey = this.getHeight() * 1.0f  / (f.height);
+		
+	}
+	
+	public void applyWall() {
+		
+		for(Square n : wall)
+			f.setWall(n);
+		
+	}
+	
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		Square wallSq = new Square((int)(e.getPoint().x/sizex),(int)(e.getPoint().y/sizey),SquareType.WALL);
+		
+		int index =  wall.indexOf(wallSq);
+		
+		if(index==-1)
+			wall.add(wallSq);
+		else 
+			wall.remove(wallSq);
+		
+		f.clear();
+		
+		for(Square n : wall)
+			f.setWall(n);
+		
+		if (autoEvaluate)		
+			f.evaluate();
+		
 		this.repaint();
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 
