@@ -15,7 +15,7 @@ It's possible to:
 * Setting the Start and Endpoint
 * Having a live interactive sandbox autoupdate
 
-<img width="400" alt="Grid View" src="https://user-images.githubusercontent.com/59959982/115831279-adab0e00-a411-11eb-8091-828b2fc0ee5e.png"> <img width="80" alt="Toolbox" src="https://user-images.githubusercontent.com/59959982/115831306-b69bdf80-a411-11eb-98cd-d6ed9398d991.png">
+<img width="400" alt="Grid View" src="https://user-images.githubusercontent.com/59959982/115831279-adab0e00-a411-11eb-8091-828b2fc0ee5e.png"> <img width="160" alt="Toolbox" src="https://user-images.githubusercontent.com/59959982/115831306-b69bdf80-a411-11eb-98cd-d6ed9398d991.png">
 
 ## What is A*
 A algorithm which finds the shortest path between two given points e.g. ROOT (start),
